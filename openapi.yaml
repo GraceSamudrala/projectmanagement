@@ -1,0 +1,1353 @@
+openapi: 3.0.0
+info:
+  x-skaffolder-id-project: 5fd54410a3e0491123236ef4
+  title: projectmanagement
+  description: You can obtain JWT token from login API
+  version: 0.1
+servers:
+  - url: http://localhost:3000/api
+    description: Local server for testing
+paths:
+  /login:
+    post:
+      x-skaffolder-ignore: true
+      summary: Login API
+      security: []
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              example:
+                username: admin
+                password: 62f264d7ad826f02a8af714c0a54b197935b717656b80461686d450f7b3abde4c553541515de2052b9af70f710f0cd8a1a2d3f4d60aa72608d71a63a9a93c0f5
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /verifyToken:
+    post:
+      x-skaffolder-ignore: true
+      summary: Verify token API
+      security: []
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /changePassword:
+    post:
+      x-skaffolder-ignore: true
+      summary: Change password API
+      tags:
+        - Security
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                passwordNew:
+                  type: string
+                passwordOld:
+                  type: string
+      responses:
+        "200":
+          description: OK
+  "/user/{id}/changePassword":
+    post:
+      x-skaffolder-id: 5fd54410a3e0491123236f06
+      x-skaffolder-name: changePassword
+      x-skaffolder-id-resource: 5fd54410a3e0491123236efe
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: 
+      x-skaffolder-crudType: 
+      x-skaffolder-description: Change password of user from admin
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: object
+      x-skaffolder-url: /{id}/changePassword
+      x-skaffolder-roles:
+        - 5fd54410a3e0491123236f00
+      summary: Change password of user from admin
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+  /user:
+    post:
+      x-skaffolder-id: 5fd54410a3e0491123236f07
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5fd54410a3e0491123236efe
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mail:
+                  type: string
+                name:
+                  type: string
+                password:
+                  type: string
+                roles:
+                  type: string
+                surname:
+                  type: string
+                username:
+                  type: string
+    get:
+      x-skaffolder-id: 5fd54410a3e0491123236f04
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 5fd54410a3e0491123236efe
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+  "/user/{id}":
+    delete:
+      x-skaffolder-id: 5fd54410a3e0491123236f02
+      x-skaffolder-name: delete
+      x-skaffolder-id-resource: 5fd54410a3e0491123236efe
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: delete
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION delete
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION delete
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      x-skaffolder-id: 5fd54410a3e0491123236f03
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5fd54410a3e0491123236efe
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    post:
+      x-skaffolder-id: 5fd54410a3e0491123236f01
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5fd54410a3e0491123236efe
+      x-skaffolder-resource: User
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - User
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+  /allocate:
+    post:
+      x-skaffolder-id: 5fd547eba3e0491123236fca
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - allocate
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/allocate"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fname:
+                  type: string
+                pname:
+                  type: string
+                sname:
+                  type: string
+                validate:
+                  type: boolean
+    get:
+      x-skaffolder-id: 5fd547eba3e0491123236fcf
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - allocate
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/allocate"
+  "/allocate/{id}":
+    delete:
+      x-skaffolder-id: 5fd547eba3e0491123236fce
+      x-skaffolder-name: delete
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: delete
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION delete
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION delete
+      tags:
+        - allocate
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      x-skaffolder-id: 5fd547eba3e0491123236fcb
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - allocate
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/allocate"
+    post:
+      x-skaffolder-id: 5fd547eba3e0491123236fc8
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - allocate
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/allocate"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/allocate"
+  "/allocate/findByfaculty/{key}":
+    get:
+      x-skaffolder-id: 5fd547c5a3e0491123236fb2
+      x-skaffolder-name: findByfaculty
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: findByfaculty
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION findByfaculty
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /findByfaculty/{key}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION findByfaculty
+      tags:
+        - allocate
+      parameters:
+        - name: key
+          x-skaffolder-type: Objectid
+          in: path
+          description: Id of model to search for
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/allocate"
+  "/allocate/findByproject/{key}":
+    get:
+      x-skaffolder-id: 5fd547e4a3e0491123236fbe
+      x-skaffolder-name: findByproject
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: findByproject
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION findByproject
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /findByproject/{key}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION findByproject
+      tags:
+        - allocate
+      parameters:
+        - name: key
+          x-skaffolder-type: Objectid
+          in: path
+          description: Id of model to search for
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/allocate"
+  "/allocate/findBystudent/{key}":
+    get:
+      x-skaffolder-id: 5fd547bda3e0491123236fa5
+      x-skaffolder-name: findBystudent
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: findBystudent
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION findBystudent
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /findBystudent/{key}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION findBystudent
+      tags:
+        - allocate
+      parameters:
+        - name: key
+          x-skaffolder-type: Objectid
+          in: path
+          description: Id of model to search for
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/allocate"
+  "/allocate/{id}/validate":
+    post:
+      x-skaffolder-id: 5fd54915a3e0491123236fd1
+      x-skaffolder-name: validate
+      x-skaffolder-id-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-resource: allocate
+      x-skaffolder-crudAction: 
+      x-skaffolder-crudType: 
+      x-skaffolder-description: This API is used to validate
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: Boolean
+      x-skaffolder-url: /{id}/validate
+      x-skaffolder-roles:
+      summary: This API is used to validate
+      tags:
+        - allocate
+      parameters:
+        - name: id
+          x-skaffolder-type: String
+          in: path
+          description: is of the allocation
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /faculty:
+    post:
+      x-skaffolder-id: 5fd547c5a3e0491123236fb0
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-resource: faculty
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - faculty
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/faculty"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                doj:
+                  type: integer
+                name:
+                  type: string
+                special:
+                  type: string
+    get:
+      x-skaffolder-id: 5fd547c5a3e0491123236fb6
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-resource: faculty
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - faculty
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/faculty"
+  "/faculty/{id}":
+    delete:
+      x-skaffolder-id: 5fd547c5a3e0491123236fb5
+      x-skaffolder-name: delete
+      x-skaffolder-id-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-resource: faculty
+      x-skaffolder-crudAction: delete
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION delete
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION delete
+      tags:
+        - faculty
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      x-skaffolder-id: 5fd547c5a3e0491123236fae
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-resource: faculty
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - faculty
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/faculty"
+    post:
+      x-skaffolder-id: 5fd547c5a3e0491123236fad
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-resource: faculty
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - faculty
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/faculty"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/faculty"
+  "/faculty/findByproject/{key}":
+    get:
+      x-skaffolder-id: 5fd547e4a3e0491123236fc0
+      x-skaffolder-name: findByproject
+      x-skaffolder-id-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-resource: faculty
+      x-skaffolder-crudAction: findByproject
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION findByproject
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /findByproject/{key}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION findByproject
+      tags:
+        - faculty
+      parameters:
+        - name: key
+          x-skaffolder-type: Objectid
+          in: path
+          description: Id of model to search for
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/faculty"
+  /project:
+    post:
+      x-skaffolder-id: 5fd547e4a3e0491123236fbb
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5fd54654a3e0491123236f91
+      x-skaffolder-resource: project
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - project
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/project"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+    get:
+      x-skaffolder-id: 5fd547bda3e0491123236fa7
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 5fd54654a3e0491123236f91
+      x-skaffolder-resource: project
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - project
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/project"
+  "/project/{id}":
+    delete:
+      x-skaffolder-id: 5fd547e4a3e0491123236fc5
+      x-skaffolder-name: delete
+      x-skaffolder-id-resource: 5fd54654a3e0491123236f91
+      x-skaffolder-resource: project
+      x-skaffolder-crudAction: delete
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION delete
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION delete
+      tags:
+        - project
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      x-skaffolder-id: 5fd547e4a3e0491123236fb9
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5fd54654a3e0491123236f91
+      x-skaffolder-resource: project
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - project
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/project"
+    post:
+      x-skaffolder-id: 5fd547e4a3e0491123236fba
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5fd54654a3e0491123236f91
+      x-skaffolder-resource: project
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - project
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/project"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/project"
+  /student:
+    post:
+      x-skaffolder-id: 5fd547bda3e0491123236fa2
+      x-skaffolder-name: create
+      x-skaffolder-id-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-resource: student
+      x-skaffolder-crudAction: create
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION create
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION create
+      tags:
+        - student
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/student"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dob:
+                  type: integer
+                name:
+                  type: string
+                surname:
+                  type: string
+    get:
+      x-skaffolder-id: 5fd547bda3e0491123236fa9
+      x-skaffolder-name: list
+      x-skaffolder-id-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-resource: student
+      x-skaffolder-crudAction: list
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION list
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /
+      x-skaffolder-roles: []
+      summary: CRUD ACTION list
+      tags:
+        - student
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/student"
+  "/student/{id}":
+    delete:
+      x-skaffolder-id: 5fd547bda3e0491123236faa
+      x-skaffolder-name: delete
+      x-skaffolder-id-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-resource: student
+      x-skaffolder-crudAction: delete
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION delete
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION delete
+      tags:
+        - student
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      x-skaffolder-id: 5fd547bda3e0491123236fa1
+      x-skaffolder-name: get
+      x-skaffolder-id-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-resource: student
+      x-skaffolder-crudAction: get
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION get
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION get
+      tags:
+        - student
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id resource
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/student"
+    post:
+      x-skaffolder-id: 5fd547bda3e0491123236fa0
+      x-skaffolder-name: update
+      x-skaffolder-id-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-resource: student
+      x-skaffolder-crudAction: update
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION update
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /{id}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION update
+      tags:
+        - student
+      parameters:
+        - name: id
+          x-skaffolder-type: ObjectId
+          in: path
+          description: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/student"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/student"
+  "/student/findByproject/{key}":
+    get:
+      x-skaffolder-id: 5fd547e4a3e0491123236fc2
+      x-skaffolder-name: findByproject
+      x-skaffolder-id-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-resource: student
+      x-skaffolder-crudAction: findByproject
+      x-skaffolder-crudType: 
+      x-skaffolder-description: CRUD ACTION findByproject
+      x-skaffolder-returnDesc: 
+      x-skaffolder-returnType: 
+      x-skaffolder-url: /findByproject/{key}
+      x-skaffolder-roles: []
+      summary: CRUD ACTION findByproject
+      tags:
+        - student
+      parameters:
+        - name: key
+          x-skaffolder-type: Objectid
+          in: path
+          description: Id of model to search for
+          required: true
+          schema:
+            type: Objectid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/student"
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      x-skaffolder-id: 5fd54410a3e0491123236efe
+      x-skaffolder-id-db: 5fd54410a3e0491123236ef5
+      x-skaffolder-id-entity: 5fd54410a3e0491123236ef6
+      x-skaffolder-url: /user
+      x-skaffolder-type: User
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        mail:
+          type: string
+          x-skaffolder-id-attr: 5fd54410a3e0491123236ef9
+          x-skaffolder-type: String
+        name:
+          type: string
+          x-skaffolder-id-attr: 5fd54410a3e0491123236efa
+          x-skaffolder-type: String
+        password:
+          type: string
+          x-skaffolder-id-attr: 5fd54410a3e0491123236ef8
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+        roles:
+          type: string
+          x-skaffolder-id-attr: 5fd54410a3e0491123236efc
+          x-skaffolder-type: String
+        surname:
+          type: string
+          x-skaffolder-id-attr: 5fd54410a3e0491123236efb
+          x-skaffolder-type: String
+        username:
+          type: string
+          x-skaffolder-id-attr: 5fd54410a3e0491123236ef7
+          x-skaffolder-type: String
+          x-skaffolder-required: true
+      x-skaffolder-relations: 
+      required:
+        - _id
+        - password
+        - username
+    allocate:
+      x-skaffolder-id: 5fd5468ca3e0491123236f98
+      x-skaffolder-id-db: 5fd54410a3e0491123236ef5
+      x-skaffolder-id-entity: 5fd5468ca3e0491123236f94
+      x-skaffolder-url: /allocate
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        fname:
+          type: string
+          x-skaffolder-id-attr: 5fd5468ca3e0491123236f96
+          x-skaffolder-type: String
+        pname:
+          type: string
+          x-skaffolder-id-attr: 5fd5468ca3e0491123236f97
+          x-skaffolder-type: String
+        sname:
+          type: string
+          x-skaffolder-id-attr: 5fd5468ca3e0491123236f95
+          x-skaffolder-type: String
+        validate:
+          type: boolean
+          x-skaffolder-id-attr: 5fd549b0a3e0491123236fd3
+          x-skaffolder-type: Boolean
+      x-skaffolder-relations:
+        faculty:
+          x-skaffolder-id: 5fd5471fa3e0491123236f9b
+          x-skaffolder-type: 1:m
+          x-skaffolder-ent1: 5fd5468ca3e0491123236f94
+          x-skaffolder-ent2: 5fd54621a3e0491123236f88
+        project:
+          x-skaffolder-id: 5fd5471fa3e0491123236f9c
+          x-skaffolder-type: 1:m
+          x-skaffolder-ent1: 5fd5468ca3e0491123236f94
+          x-skaffolder-ent2: 5fd54653a3e0491123236f8f
+        student:
+          x-skaffolder-id: 5fd5471fa3e0491123236f9a
+          x-skaffolder-type: 1:m
+          x-skaffolder-ent1: 5fd5468ca3e0491123236f94
+          x-skaffolder-ent2: 5fd545dda3e0491123236f81
+      required:
+        - _id
+    faculty:
+      x-skaffolder-id: 5fd54621a3e0491123236f8c
+      x-skaffolder-id-db: 5fd54410a3e0491123236ef5
+      x-skaffolder-id-entity: 5fd54621a3e0491123236f88
+      x-skaffolder-url: /faculty
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        doj:
+          type: integer
+          x-skaffolder-id-attr: 5fd54621a3e0491123236f8b
+          x-skaffolder-type: Date
+        name:
+          type: string
+          x-skaffolder-id-attr: 5fd54621a3e0491123236f89
+          x-skaffolder-type: String
+        special:
+          type: string
+          x-skaffolder-id-attr: 5fd54621a3e0491123236f8a
+          x-skaffolder-type: String
+      x-skaffolder-relations:
+        project:
+          x-skaffolder-id: 5fd54751a3e0491123236f9d
+          x-skaffolder-type: m:m
+          x-skaffolder-ent1: 5fd54621a3e0491123236f88
+          x-skaffolder-ent2: 5fd54653a3e0491123236f8f
+      required:
+        - _id
+    project:
+      x-skaffolder-id: 5fd54654a3e0491123236f91
+      x-skaffolder-id-db: 5fd54410a3e0491123236ef5
+      x-skaffolder-id-entity: 5fd54653a3e0491123236f8f
+      x-skaffolder-url: /project
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        name:
+          type: string
+          x-skaffolder-id-attr: 5fd54653a3e0491123236f90
+          x-skaffolder-type: String
+      x-skaffolder-relations: 
+      required:
+        - _id
+    student:
+      x-skaffolder-id: 5fd545dda3e0491123236f85
+      x-skaffolder-id-db: 5fd54410a3e0491123236ef5
+      x-skaffolder-id-entity: 5fd545dda3e0491123236f81
+      x-skaffolder-url: /student
+      properties:
+        _id:
+          type: string
+          x-skaffolder-required: true
+        dob:
+          type: integer
+          x-skaffolder-id-attr: 5fd545dda3e0491123236f84
+          x-skaffolder-type: Date
+        name:
+          type: string
+          x-skaffolder-id-attr: 5fd545dda3e0491123236f82
+          x-skaffolder-type: String
+        surname:
+          type: string
+          x-skaffolder-id-attr: 5fd545dda3e0491123236f83
+          x-skaffolder-type: String
+      x-skaffolder-relations:
+        project:
+          x-skaffolder-id: 5fd54770a3e0491123236f9e
+          x-skaffolder-type: m:m
+          x-skaffolder-ent1: 5fd545dda3e0491123236f81
+          x-skaffolder-ent2: 5fd54653a3e0491123236f8f
+      required:
+        - _id
+  x-skaffolder-db:
+    - x-skaffolder-id: 5fd54410a3e0491123236ef5
+      x-skaffolder-name: projectmanagement_db
+  x-skaffolder-page:
+    - x-skaffolder-id: 5fd54410a3e0491123236efd
+      x-skaffolder-name: Home
+      x-skaffolder-url: /home
+      x-skaffolder-template: 
+      x-skaffolder-resource: 
+      x-skaffolder-services: 
+      x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 5fd547bda3e0491123236fa8
+        - 5fd547c5a3e0491123236fb4
+        - 5fd547e4a3e0491123236fc4
+        - 5fd547eba3e0491123236fcd
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547eba3e0491123236fc7
+      x-skaffolder-name: allocateEdit
+      x-skaffolder-url: /allocates/{id}
+      x-skaffolder-template: Edit_Crud
+      x-skaffolder-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-services:
+        - 5fd547eba3e0491123236fca
+        - 5fd547eba3e0491123236fc8
+        - 5fd547eba3e0491123236fcb
+        - 5fd547bda3e0491123236fa9
+        - 5fd547bda3e0491123236fa7
+        - 5fd547c5a3e0491123236fb6
+      x-skaffolder-nesteds: 
+      x-skaffolder-links: 
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547eba3e0491123236fcd
+      x-skaffolder-name: allocateList
+      x-skaffolder-url: /allocates
+      x-skaffolder-template: List_Crud
+      x-skaffolder-resource: 5fd5468ca3e0491123236f98
+      x-skaffolder-services:
+        - 5fd547eba3e0491123236fce
+        - 5fd547eba3e0491123236fcf
+      x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 5fd547eba3e0491123236fc7
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547c5a3e0491123236fac
+      x-skaffolder-name: facultyEdit
+      x-skaffolder-url: /facultys/{id}
+      x-skaffolder-template: Edit_Crud
+      x-skaffolder-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-services:
+        - 5fd547c5a3e0491123236fb0
+        - 5fd547c5a3e0491123236fad
+        - 5fd547c5a3e0491123236fae
+        - 5fd547c5a3e0491123236fb2
+        - 5fd547bda3e0491123236fa7
+      x-skaffolder-nesteds: 
+      x-skaffolder-links: 
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547c5a3e0491123236fb4
+      x-skaffolder-name: facultyList
+      x-skaffolder-url: /facultys
+      x-skaffolder-template: List_Crud
+      x-skaffolder-resource: 5fd54621a3e0491123236f8c
+      x-skaffolder-services:
+        - 5fd547c5a3e0491123236fb5
+        - 5fd547c5a3e0491123236fb6
+      x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 5fd547c5a3e0491123236fac
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547e4a3e0491123236fb8
+      x-skaffolder-name: projectEdit
+      x-skaffolder-url: /projects/{id}
+      x-skaffolder-template: Edit_Crud
+      x-skaffolder-resource: 5fd54654a3e0491123236f91
+      x-skaffolder-services:
+        - 5fd547e4a3e0491123236fbb
+        - 5fd547e4a3e0491123236fba
+        - 5fd547e4a3e0491123236fb9
+        - 5fd547e4a3e0491123236fbe
+        - 5fd547e4a3e0491123236fc0
+        - 5fd547e4a3e0491123236fc2
+      x-skaffolder-nesteds: 
+      x-skaffolder-links: 
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547e4a3e0491123236fc4
+      x-skaffolder-name: projectList
+      x-skaffolder-url: /projects
+      x-skaffolder-template: List_Crud
+      x-skaffolder-resource: 5fd54654a3e0491123236f91
+      x-skaffolder-services:
+        - 5fd547e4a3e0491123236fc5
+        - 5fd547bda3e0491123236fa7
+      x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 5fd547e4a3e0491123236fb8
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547bda3e0491123236f9f
+      x-skaffolder-name: studentEdit
+      x-skaffolder-url: /students/{id}
+      x-skaffolder-template: Edit_Crud
+      x-skaffolder-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-services:
+        - 5fd547bda3e0491123236fa2
+        - 5fd547bda3e0491123236fa0
+        - 5fd547bda3e0491123236fa1
+        - 5fd547bda3e0491123236fa5
+        - 5fd547bda3e0491123236fa7
+        - 5fd54915a3e0491123236fd1
+      x-skaffolder-nesteds: 
+      x-skaffolder-links: 
+      x-skaffolder-roles: []
+    - x-skaffolder-id: 5fd547bda3e0491123236fa8
+      x-skaffolder-name: studentList
+      x-skaffolder-url: /students
+      x-skaffolder-template: List_Crud
+      x-skaffolder-resource: 5fd545dda3e0491123236f85
+      x-skaffolder-services:
+        - 5fd547bda3e0491123236faa
+        - 5fd547bda3e0491123236fa9
+      x-skaffolder-nesteds: 
+      x-skaffolder-links:
+        - 5fd547bda3e0491123236f9f
+      x-skaffolder-roles: []
+  x-skaffolder-roles: 
+    - x-skaffolder-id: 5fd54410a3e0491123236f00
+      x-skaffolder-name: ADMIN
